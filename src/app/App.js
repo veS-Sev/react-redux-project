@@ -44,7 +44,7 @@ function App() {
     <div className="App">
       <header className="App-header">
       </header>
-      <section className='counter'>
+      <section className='customers'>
         <div style={{ fontSize: "45px", color: "green" }}>
           {customers.length > 0 ?
             <div>{
@@ -58,7 +58,7 @@ function App() {
         <button className='customers-button' onClick={() => addCustomer(prompt())}>Добавить клиента</button>
         <button className='customers-button' onClick={() => removeCustomer(prompt())}>Удалить клиента</button>
       </section>
-      <section className='customers'>
+      <section className='counter'>
         <div style={{ fontSize: "35px" }}>{cash}</div>
         <button className='counter-button' onClick={() => addCash(Number(prompt()))}>Добавить</button>
         <button className='counter-button' onClick={() => getCash(Number(prompt()))}>Получить</button>
