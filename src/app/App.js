@@ -5,6 +5,7 @@ import { CustomField } from './components/custom-field/custom-field';
 import { CustomInput } from './components/custom-input/custom-input';
 import { useInput } from './components/custom-input/hooks/use-input.hook';
 import { useButton } from './components/custom-button/hooks/use-button.hook';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 function App() {
 
@@ -12,7 +13,7 @@ function App() {
   const cash = useSelector(state => state.cash.cash)
   const customers = useSelector(state => state.customers.customers)
   const result = useSelector(state => state.result.result)
- 
+
   const inputSum = useInput('')
   const { disableAdd, disableGet } = useButton(result, inputSum.value)
   const handleAddMoney = () => {
@@ -39,7 +40,6 @@ function App() {
   const removeCustomer = (customer) => {
     dispatch({ type: "REMOVE_CUSTOMERS", payload: customer.id })
   }
-
   return (
     <div className="App">
       <header className="App-header">
