@@ -12,7 +12,7 @@ function App() {
   const cash = useSelector(state => state.cash.cash)
   const customers = useSelector(state => state.customers.customers)
   const result = useSelector(state => state.result.result)
-  console.log('cash', cash)
+ 
   const inputSum = useInput('')
   const { disableAdd, disableGet } = useButton(result, inputSum.value)
   const handleAddMoney = () => {
@@ -39,7 +39,7 @@ function App() {
   const removeCustomer = (customer) => {
     dispatch({ type: "REMOVE_CUSTOMERS", payload: customer.id })
   }
-  console.log('customers.lenght', customers.length)
+
   return (
     <div className="App">
       <header className="App-header">
