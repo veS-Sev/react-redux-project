@@ -1,4 +1,4 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import {cashReducer} from './cash-reducer';
 import { customersReducer } from './customers-reducer';
 import { composeWithDevTools } from '@redux-devtools/extension';
@@ -10,4 +10,4 @@ const rootReduser=combineReducers({
     result: resultReduser,
     disable:disableReduser,
 })
-export const store = createStore(rootReduser,  composeWithDevTools());
+export const store = createStore(rootReduser,  composeWithDevTools(applyMiddleware(thunk)));
