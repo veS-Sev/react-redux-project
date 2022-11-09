@@ -4,6 +4,8 @@ import { customersReducer } from './customers-reducer';
 import { composeWithDevTools } from '@redux-devtools/extension';
 import { resultReduser } from './result-reduser';
 import { disableReduser } from './disable-reduser';
+import thunk from 'redux-thunk';
+
 const rootReduser=combineReducers({
     cash: cashReducer, 
     customers: customersReducer,

@@ -7,6 +7,7 @@ import { useInput } from './components/custom-input/hooks/use-input.hook';
 import { useButton } from './components/custom-button/hooks/use-button.hook';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchCustomers } from './async-actions/fetch-customers';
 function App() {
 
   const dispatch = useDispatch()
@@ -56,7 +57,7 @@ function App() {
           }
         </div>
         <button className='customers-button' onClick={() => addCustomer(prompt())}>Добавить клиента</button>
-        <button className='customers-button' onClick={() => removeCustomer(prompt())}>Удалить клиента</button>
+        <button className='customers-button' onClick={() => dispatch(fetchCustomers())}>Получить клиента из базы</button>
       </section>
       <section className='counter'>
         <div style={{ fontSize: "35px" }}>{cash}</div>
