@@ -11,17 +11,17 @@ function App() {
 
   const dispatch = useDispatch()
   const cash = useSelector(state => state.cash.cash)
+  const customers = useSelector(state => state.customers.customers)
+  const result = useSelector(state => state.result.result)
 
-  console.log('cash', cash)
   const inputSum = useInput('')
-  const [result, changeResult] = useState(0)
-  const { disabledAdd, disabledGet } = useButton(result, inputSum.value)
+  const { disableAdd, disableGet } = useButton(result, inputSum.value)
   const handleAddMoney = () => {
-    changeResult(result + Number(inputSum.value))
+    dispatch({ type: "ADD_MONEY", payload: Number(inputSum.value) })
     inputSum.setValue('')
   }
   const handleGetMoney = () => {
-    changeResult(result - inputSum.value)
+    dispatch({ type: "GET_MONEY", payload: Number(inputSum.value) })
     inputSum.setValue('')
   }
   const addCash = (cash) => {
@@ -30,11 +30,34 @@ function App() {
   const getCash = (cash) => {
     dispatch({ type: 'GET_CASH', payload: cash })
   }
-
+  const addCustomer = (name) => {
+    const customer = {
+      name,
+      id: Date.now()
+    }
+    dispatch({ type: "ADD_CUSTOMER", payload: customer })
+  }
+  const removeCustomer = (customer) => {
+    dispatch({ type: "REMOVE_CUSTOMERS", payload: customer.id })
+  }
   return (
     <div className="App">
       <header className="App-header">
       </header>
+      <section className='customers'>
+        <div style={{ fontSize: "45px", color: "green" }}>
+          {customers.length > 0 ?
+            <div>{
+              customers.map(customer =>
+                <div style={{ border: "1px solid blue", color: "pink", fontSize: "25px", margin: "10px" }} onClick={() => removeCustomer(customer)}>{customer.name}</div>)
+            }</div> :
+            <div>Список пуст</div>
+
+          }
+        </div>
+        <button className='customers-button' onClick={() => addCustomer(prompt())}>Добавить клиента</button>
+        <button className='customers-button' onClick={() => removeCustomer(prompt())}>Удалить клиента</button>
+      </section>
       <section className='counter'>
         <div style={{ fontSize: "35px" }}>{cash}</div>
         <button className='counter-button' onClick={() => addCash(Number(prompt()))}>Добавить</button>
@@ -46,8 +69,8 @@ function App() {
       <section className="App-output-section">
         <CustomField result={result} id="field" /></section>
       <section className="App-button-section">
-        <CustomButton name="ВНЕСТИ ДЕНЬГИ" id="add-money-button" onClick={handleAddMoney} disabled={disabledAdd} />
-        <CustomButton name="ПОЛУЧИТЬ ДЕНЬГИ" id="get-money-mutton" onClick={handleGetMoney} disabled={disabledGet} /></section>
+        <CustomButton name="ВНЕСТИ ДЕНЬГИ" id="add-money-button" onClick={handleAddMoney} disabled={disableAdd} />
+        <CustomButton name="ПОЛУЧИТЬ ДЕНЬГИ" id="get-money-mutton" onClick={handleGetMoney} disabled={disableGet} /></section>
     </div>
   );
 }
