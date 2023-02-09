@@ -1,10 +1,7 @@
-.App {
+section{
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  margin:25px;
+  padding: 10px 0;
 }
 
 
